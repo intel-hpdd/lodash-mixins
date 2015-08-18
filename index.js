@@ -94,6 +94,9 @@
     exists: function exists (item) {
       return item != null;
     },
+    fisEqual: _.curry(function fisEqual (a, b) {
+      return _.isEqual(a, b);
+    }),
     /**
      * Curried. A functional reduce.
      * @param {Function} func
@@ -164,6 +167,15 @@
       };
     },
     /**
+     * Curried. A functional omit.
+     * @param {Function|String|String[]} pred
+     * @param {Object} obj
+     * @returns {Object}
+     */
+    fomit: _.curry(function fomit (pred, obj) {
+      return _.omit(obj, pred);
+    }),
+    /**
      * Curried. Pulls items from an object.
      * @param {Function|String[]} sel
      * @param {Object} obj
@@ -182,9 +194,9 @@
      */
     checkObjForValue: _.curry(function checkObjForValue (properties, value, obj) {
       return _(obj)
-              .pick(properties)
-              .values()
-              .indexOf(value) !== -1;
+          .pick(properties)
+          .values()
+          .indexOf(value) !== -1;
     }),
     /**
      * Curried. Given properties iterates either objs or values
@@ -209,7 +221,7 @@
       }
 
       return arr
-          .some(check);
+        .some(check);
     }),
     /**
      * Inverts the item.
@@ -286,6 +298,9 @@
     pluckPathSep: _.curry(function pluckPathSep (sep, path, item) {
       return path.split(sep)
         .reduce(function iteratePath (pointer, part) {
+          if (pointer == null)
+            return;
+
           return pointer[part];
         }, item);
     }),
@@ -401,6 +416,34 @@
       return fn(b, a);
     }),
     /**
+     * Given a typical resource uri extract out it's id.
+     * @param {String} path
+     * @returns {Number|null}
+     */
+    extractApiId: function extractApiId (path) {
+      var regexp = /^\/api\/[^\/]+\/(\d+)\/$/;
+
+      if (!_.isString(path))
+        return null;
+
+      var results = regexp.exec(path);
+
+      return (Array.isArray(results) ? results[1] : results);
+    },
+    /**
+     * Given a test and obj, asserts that
+     * obj has all keys in test.
+     * @param {Array} test
+     * @param {Object} obj
+     * @returns {Boolean}
+     */
+    hasAllKeys: function hasAllKeys (test, obj) {
+      var keys = Object.keys(obj);
+      var intersection = _.intersection(keys, test);
+
+      return intersection.length === test.length;
+    },
+    /**
      * Sets property on an object
      * @param {String} propName
      * @param {Object} obj
@@ -408,6 +451,26 @@
      */
     set: _.curry(function set (propName, obj, propValue) {
       obj[propName] = propValue;
+    }),
+    /**
+     * Is a less than or equal to b.
+     * @param {Number} a
+     * @param {Number} b
+     * @returns {Boolean}
+     */
+    lte: _.curry(function gte (a, b) {
+      return a <= b;
+    }),
+    /**
+     * Checks if two objects have the same
+     * value for the given property.
+     * @param {String} prop
+     * @param {Object} a
+     * @param {Object} b
+     * @returns {Boolean}
+     */
+    eqProp: _.curry(function eqProp (prop, a, b) {
+      return _.isEqual(a[prop], b[prop]);
     })
   };
 
