@@ -1,5 +1,5 @@
 {
-  "name": "@intel-js/lodash-mixins",
+  "name": "intel-lodash-mixins",
   "version": "1.0.2",
   "description": "Mixins for Lo-Dash we find useful.",
   "main": "index.js",
@@ -24,7 +24,10 @@
   ],
   "repository" : {
     "type" : "git",
-    "url" : "https://github.com/intel-js/lodash-mixins.git"
+    "url": "https://github.intel.com/IML/lodash-mixins.git"
+  },
+  "publishConfig": {
+    "registry": "https://ubit-artifactory-or.intel.com/artifactory/api/npm/iml-npm-local"
   },
   "license": "MIT"
 }
