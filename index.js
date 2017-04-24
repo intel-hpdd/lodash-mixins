@@ -128,7 +128,7 @@ var _ = require('lodash');
     },
     /**
      * A functional map that pulls properties
-     * @param {Function|[String]} properties
+     * @param {Function|String} properties
      * @returns {Array|Object}
      */
     fmapProps: function fmapProp (properties) {
