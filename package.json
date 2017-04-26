@@ -20,9 +20,9 @@
     "jscs",
     "jshint"
   ],
-  "repository" : {
-    "type" : "git",
-    "url": "https://github.intel.com/MFL/lodash-mixins.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/intel-hpdd/lodash-mixins.git"
   },
   "publishConfig": {
     "access": "public"
