@@ -19,16 +19,10 @@
 // otherwise. Any license under such intellectual property rights must be
 // express and approved by Intel in writing.
 
+var _ = require('lodash');
 
 (function () {
   'use strict';
-
-  var _ = (function getLoDash() {
-    if (typeof window !== 'undefined')
-      return window._;
-    else
-      return require('lodash');
-  }());
 
   var mixins = {
     /**
