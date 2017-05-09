@@ -1,6 +1,6 @@
 {
   "name": "@mfl/lodash-mixins",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Mixins for Lo-Dash we find useful.",
   "main": "index.js",
   "author": "MFL Team",
