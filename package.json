@@ -1,9 +1,9 @@
 {
-  "name": "@mfl/lodash-mixins",
+  "name": "@iml/lodash-mixins",
   "version": "1.0.4",
   "description": "Mixins for Lo-Dash we find useful.",
   "main": "index.js",
-  "author": "MFL Team",
+  "author": "IML Team",
   "dependencies": {
     "lodash": "3.8.0"
   },
