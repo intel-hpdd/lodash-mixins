@@ -1,12 +1,21 @@
-language: node_js
-node_js:
-- 6
-cache: yarn
-deploy:
-  provider: npm
-  email: joe.grund@intel.com
-  api_key:
-    secure: UyK5wgUri1elBnuRbSwmhfgOmASO+lbUu9fEsYa+EpIsjmCWjlzdGBwiVq2IEKP6Tk/DO0OCpVh2UoK45R1GYIWIMGxx2IZhdjkOZ5sfsQ/lgRz87kkS1eZq4TpSvY4MvLYoow8OUZumlG/2uzS2DINBafxAipyHRiv7eGUnpUBCwAhWFU+S0bhsTrV9Fe31xi0JAXJxgoyIecnkDXd7ieVP2WDmbUYqrVhsmZjXy0b/F1BcxGCkeFkabsoLPcVVsIr/Vdmm2T32MB4zyTwdkPpeYnHOmhrTzuhS2EVbYk7x/RyYzqcZIm3Trx0RpAOlQU+u+G1/O3dF1w17FpkRmeYpXcqPttGmyUNF16tPzzUQER0p4VS5JGiehKFqUdqoFlLsovTookKZrRnM1f1S3U2gyrc02skNfPuDsf30OCYJnZTZ6ntKomWnarQDVixWpqqWVlcac14zR98e3Tgf9gc4kTNWsP73ZKzMw+yCmNsm4twbpvEf1xEUfLygWmE36S7OX9smLNVU9mO/pxxQAITa8+YGaSFQ+mBj8IvLKyOAd+2vBjAcYFyBszcgR19QdDi3ytTlvLTzP5FSTkrZdbrjAZWWMi7RrzkCSX8HGKuVIZs9zp1zYzWUowesJgl0PdlVZP3YCQIfhIkCqbG4AKiNK8LF7O4DfQwr4gUO75Q=
-  on:
-    tags: true
-    repo: intel-hpdd/lodash-mixins
+jobs:
+  include:
+    - stage: test
+      env: Type='virus scan'
+      script:
+        - sudo apt-get install clamav -y
+        - sudo freshclam
+        - clamscan --quiet -r ./
+    - stage: test
+      env: Type='unit test'
+      language: node_js
+      node_js:
+      - 6
+      cache: yarn
+      deploy:
+        provider: npm
+        email: "$NPM_EMAIL"
+        api_key: "$NPM_TOKEN"
+        on:
+          tags: true
+          repo: intel-hpdd/lodash-mixins
